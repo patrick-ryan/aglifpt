@@ -19,6 +19,42 @@
     <!-- css additions -->
     <link href="file:///home/patrick/Documents/Programming/aglifpt/output/theme/css/main.css" rel="stylesheet">
 
+    <script type='text/javascript' src='https://www.google.com/jsapi'></script>
+    <script type='text/javascript'>
+        google.load('visualization', '1', {'packages': ['geomap']});
+        google.setOnLoadCallback(drawMap);
+
+        function drawMap() {
+          var data = google.visualization.arrayToDataTable([
+            ['Country', 'Number'],
+            ['BI', 200],
+            ['CD', 300],
+            ['KE', 400],
+            ['RW', 500],
+            ['UG', 600]
+          ]);
+
+          var options = {};
+          options['region'] = '002';
+          options['dataMode'] = 'regions';
+          options['showLegend'] = false;
+          options['width'] = '35%';
+          options['height'] = '100%';
+
+          var container = document.getElementById('map_canvas');
+          var geomap = new google.visualization.GeoMap(container);
+          geomap.draw(data, options);
+
+          google.visualization.events.addListener(geomap, 'regionClick', function(e) {
+            console.log("test");
+          });
+
+          google.visualization.events.addListener(geomap, 'drawingDone', function(e) {
+            console.log("test");
+          });
+        };
+    </script>
+
 
 
     <meta name="tags" contents="healing" />
@@ -28,8 +64,8 @@
 <body id="index" class="home">
     <header id="banner" class="body">
         <div class="main-header">
-            <div class="container-fluid">
-                Test
+            <div class="container">
+              <div id='map_canvas'></div>
             </div>
         </div>
         <h1><a href="file:///home/patrick/Documents/Programming/aglifpt/output/">aglifpt <strong></strong></a></h1>
