@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap -->
-    <link href="file:///home/patrick/Documents/Programming/aglifpt/output/theme/bootstrap.min.css" rel="stylesheet">
+    <link href="file:///home/patrick/Documents/Programming/aglifpt/output/theme/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -21,35 +21,30 @@
 
     <script type='text/javascript' src='https://www.google.com/jsapi'></script>
     <script type='text/javascript'>
-        google.load('visualization', '1', {'packages': ['geomap']});
-        google.setOnLoadCallback(drawMap);
+        google.load('visualization', '1', {'packages': ['geochart']});
+        google.setOnLoadCallback(drawRegionsMap);
 
-        function drawMap() {
+        function drawRegionsMap() {
           var data = google.visualization.arrayToDataTable([
-            ['Country', 'Number'],
-            ['BI', 200],
-            ['CD', 300],
-            ['KE', 400],
-            ['RW', 500],
-            ['UG', 600]
+            ['Country', 'Name'],
+            ['BI', 'Burundi'],
+            ['CD', 'DRC'],
+            ['KE', 'Kenya'],
+            ['RW', 'Rwanda'],
+            ['UG', 'Uganda']
           ]);
 
           var options = {};
-          options['region'] = '002';
-          options['dataMode'] = 'regions';
-          options['showLegend'] = false;
-          options['width'] = '35%';
-          options['height'] = '100%';
+          options['displayMode'] = 'text';
+          // options['keepAspectRatio'] = false;
+          options['region'] = '017';
+          options['width'] = '300';
+          // options['height'] = '200';
 
-          var container = document.getElementById('map_canvas');
-          var geomap = new google.visualization.GeoMap(container);
-          geomap.draw(data, options);
+          var chart = new google.visualization.GeoChart(document.getElementById('chart_div'));
+          chart.draw(data, options);
 
-          google.visualization.events.addListener(geomap, 'regionClick', function(e) {
-            console.log("test");
-          });
-
-          google.visualization.events.addListener(geomap, 'drawingDone', function(e) {
+          google.visualization.events.addListener(chart, 'regionClick', function(e) {
             console.log("test");
           });
         };
@@ -63,13 +58,14 @@
 
 <body id="index" class="home">
     <header id="banner" class="body">
-        <div class="main-header">
-            <div class="container">
-              <div id='map_canvas'></div>
-            </div>
-        </div>
-        <h1><a href="file:///home/patrick/Documents/Programming/aglifpt/output/">aglifpt <strong></strong></a></h1>
+        <!-- <h1><a href="file:///home/patrick/Documents/Programming/aglifpt/output/">aglifpt <strong></strong></a></h1> -->
     </header><!-- /#banner -->
+
+    <div class="main-header">
+        <div class="container">
+          <div id="chart_div"></div>
+        </div>
+    </div>
 
     <nav id="menu"><ul>
     </ul></nav><!-- /#menu -->
@@ -241,6 +237,6 @@
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="file:///home/patrick/Documents/Programming/aglifpt/output/theme/js/bootstrap.min.js"></script>
 </body>
 </html>

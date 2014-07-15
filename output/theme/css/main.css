@@ -1,7 +1,6 @@
 .main-header {
     background-image: url('../images/subbotbar.jpg');
+    background-position: left top;
     background-size: 100% auto;
     background-repeat: no-repeat;
-    margin-top: 100px;
-    margin-bottom: 100px;
 }
